@@ -16,7 +16,6 @@ GET /api/notes
 ```Javascript
 {
     "totalPages": 3,
-
     "notes": [
 
         {
@@ -68,13 +67,12 @@ GET /api/notes?page={page}
 ```
 
 Параметры
-{page} - Номер страницы (Integer)
+* {page} - Номер страницы (Integer)
 
 Пример ответа
 ```Javascript
 {
     "totalPages": 3,
-
     "notes": [
 
         {
@@ -125,9 +123,7 @@ GET /api/notes/tag?tag={tag}
         "id": 1,
         "name": "нефть"
     },
-
     "totalPages": 2,
-
     "notes": [
 
         {
@@ -200,9 +196,7 @@ GET /api/notes/tag?page={page}&tag={tag}
         "id": 1,
         "name": "нефть"
     },
-
     "totalPages": 2,
-
     "notes": [
 
         {
