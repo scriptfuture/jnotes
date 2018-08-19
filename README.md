@@ -27,7 +27,7 @@ GET /api/notes
 ```
 
 Пример ответа
-```Javascript
+```JSON
 {
     "totalPages": 3,
     "notes": [
@@ -84,7 +84,7 @@ GET /api/notes?page={page}
 * {page} - Номер страницы (Integer)
 
 Пример ответа
-```Javascript
+```JSON
 {
     "totalPages": 3,
     "notes": [
@@ -131,7 +131,7 @@ GET /api/notes/tag?tag={tag}
 Параметры
 * {tag} - Номер тега (Integer)
 
-```Javascript
+```JSON
 {
     "tag": {
         "id": 1,
@@ -204,7 +204,7 @@ GET /api/notes/tag?page={page}&tag={tag}
 * {page} - Номер страницы (Integer)
 * {tag} - Номер тега (Integer)
 
-```Javascript
+```JSON
 {
     "tag": {
         "id": 1,
@@ -261,7 +261,7 @@ GET /api/notes/tag?page={page}&tag={tag}
 GET /api/tags
 ```
 
-```Javascript
+```JSON
 {
     "tags": [{
             "id": 1,
@@ -317,7 +317,7 @@ GET /api/notes/one?id={id}
 Параметры
 * {id} - Номер заметки (Integer)
 
-```Javascript
+```JSON
 {
     "id": 8,
     "title": "Тестовый заголовок",
@@ -344,7 +344,7 @@ POST /api/notes/new?title={title}&text={text}&tags={tags}
 * {text} - Текст заметки (String)
 * {tags} - Теги (String)
 
-```Javascript
+```JSON
 {"msg": "ok"}
 ```
 
@@ -360,7 +360,7 @@ POST /api/notes/update?title={title}&text={text}&tags={tags}
 * {text} - Текст заметки (String)
 * {tags} - Теги (String)
 
-```Javascript
+```JSON
 {"msg": "ok"}
 ```
 
@@ -374,7 +374,7 @@ DELETE /api/notes/delete?id={id}
 Параметры
 * {id} - Номер заметки (Integer)
 
-```Javascript
+```JSON
 {"msg": "ok"}
 ```
 
