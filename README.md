@@ -4,12 +4,20 @@
 В разработке... 
 
 ---
+
 Frontend на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
----
+
 
 ### Описание REST-API
 
-
+Все примеры запросов в виде:
+```code
+{METHOD} {URL}?{PARAMS}
+```
+Где
+* {METHOD} - Метод запроса GET/POST/DELETE
+* {URL} - Путь запроса
+* {PARAMS} - Параметры запроса
 
 ### Список заметок
 
