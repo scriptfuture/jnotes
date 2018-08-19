@@ -1,7 +1,9 @@
 ## JNotes - Заметки на React + Redux, с бекэндом на Java (Spring Framework + PostgreSQL)
--------------------------
+
 
 ### Описание REST-API
+
+
 
 ### Список заметок
 
@@ -68,6 +70,45 @@ GET /api/notes?page={page}
 Параметры
 {page} - Номер страницы (Integer)
 
+Пример ответа
+```Javascript
+{
+    "totalPages": 3,
+
+    "notes": [
+
+        {
+            "id": 11,
+            "title": "Россети",
+            "text": "Россети Москва Электроэнергетика 904 млрд р.",
+            "tags": [{
+                "id": 7,
+                "name": "электроэнергетика"
+            }]
+        },
+        {
+            "id": 12,
+            "title": "Интер РАО",
+            "text": "Интер РАО Москва Электроэнергетика 868 млрд р.",
+            "tags": [{
+                "id": 7,
+                "name": "электроэнергетика"
+            }]
+        },
+        {
+            "id": 13,
+            "title": "Росатом",
+            "text": "Росатом Москва Атомная промышленность 865 млрд р.",
+            "tags": [{
+                "id": 8,
+                "name": "атомная промышленность"
+            }]
+        }
+        
+    ]
+}
+```
+
 ---
 
 #### Получить первую страницу по id тега
@@ -76,7 +117,7 @@ GET /api/notes/tag?tag={tag}
 ```
 
 Параметры
-{tag} - Номер тега (Integer)
+* {tag} - Номер тега (Integer)
 
 ---
 
@@ -86,8 +127,8 @@ GET /api/notes/tag?page={page}&tag={tag}
 ```
 
 Параметры
-{page} - Номер страницы (Integer)
-{tag} - Номер тега (Integer)
+* {page} - Номер страницы (Integer)
+* {tag} - Номер тега (Integer)
 
 ---
 
@@ -104,7 +145,7 @@ GET /api/notes/one?id={id}
 ```
 
 Параметры
-{id} - Номер заметки (Integer)
+* {id} - Номер заметки (Integer)
 
 ---
 
@@ -114,9 +155,9 @@ POST /api/notes/new?title={title}&text={text}&tags={tags}
 ```
 
 Параметры
-{title} - Заголовок заметки (String)
-{text} - Текст заметки (String)
-{tags} - Теги (String)
+* {title} - Заголовок заметки (String)
+* {text} - Текст заметки (String)
+* {tags} - Теги (String)
 
 ---
 
@@ -126,9 +167,9 @@ POST /api/notes/update?title={title}&text={text}&tags={tags}
 ```
 
 Параметры
-{title} - Заголовок заметки (String)
-{text} - Текст заметки (String)
-{tags} - Теги (String)
+* {title} - Заголовок заметки (String)
+* {text} - Текст заметки (String)
+* {tags} - Теги (String)
 
 ---
 
@@ -138,7 +179,7 @@ DELETE /api/notes/delete?id={id}
 ```
 
 Параметры
-{id} - Номер заметки (Integer)
+* {id} - Номер заметки (Integer)
 
 
 
