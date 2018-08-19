@@ -10,4 +10,3 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan("io.github.scriptfuture.jnotes")
 public class WebConfig extends WebMvcConfigurerAdapter{
 }
-
