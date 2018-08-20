@@ -62,21 +62,19 @@ public class NotesController {
     @RequestMapping(value = "/new", method = RequestMethod.POST, params = {"title", "text", "tags"})
     @ResponseBody
     public String newNote(@RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
-
-        return "new title: "+title+" text: "+text+" tags:"+tags;
+        return db.newNote(title, text, tags);
     }
 
 
     // Создать заметку
-    @RequestMapping(value = "/update", method = RequestMethod.POST, params = {"title", "text", "tags"})
+    @RequestMapping(value = "/update", method = RequestMethod.POST, params = {"id", "title", "text", "tags"})
     @ResponseBody
-    public String updateNote(@RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
-
-        return "update title: "+title+" text: "+text+" tags:"+tags;
+    public String updateNote(@RequestParam("id") int id, @RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
+        return db.updateNote(id, title, text, tags);
     }
 
     // Удалить заметку
-    @RequestMapping(value = "/delete", method = RequestMethod.GET, params = {"id"})
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, params = {"id"})
     @ResponseBody
     public String deleteNote(@RequestParam("id") int id, ModelMap model){
         return db.removeNote(id);

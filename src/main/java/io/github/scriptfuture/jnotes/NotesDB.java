@@ -335,4 +335,60 @@ public class NotesDB {
         return container.toString();
     }
 
+    public String newNote(String title, String text, String tags) {
+
+
+        JSONObject container = new JSONObject();
+
+        try {
+
+            PreparedStatement st = connection.prepareStatement("INSERT INTO notes (title, text)\n" +
+                    "    VALUES (?, ?);");
+            st.setString(1, title);
+            st.setString(2, text);
+            st.execute();
+
+            container.put("msg", "ok");
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+
+            container.put("msg", "error");
+
+        }
+
+
+        return container.toString();
+    }
+
+    public String updateNote(int id, String title, String text, String tags) {
+
+
+        JSONObject container = new JSONObject();
+
+        try {
+
+            PreparedStatement st = connection.prepareStatement("UPDATE notes SET title = ?, text = ? WHERE id = ?");
+            st.setString(1, title);
+            st.setString(2, text);
+            st.setInt(3, id);
+            st.execute();
+
+            container.put("msg", "ok");
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+
+            container.put("msg", "error");
+
+        }
+
+
+        return container.toString();
+    }
+
 }
