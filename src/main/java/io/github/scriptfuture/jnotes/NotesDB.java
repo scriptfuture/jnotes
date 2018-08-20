@@ -58,9 +58,12 @@ public class NotesDB {
         JSONObject obj = new JSONObject();
 
         try {
-            java.sql.Statement stat = connection.createStatement();
+            
+            PreparedStatement stat = connection.prepareStatement("select * from notes where id = ?");
+            stat.setInt(1, id);
 
-            ResultSet rs = stat.executeQuery("select * from notes where id = '"+id+"'");
+            ResultSet rs = stat.executeQuery();
+
 
             if (rs.next()) {
 
@@ -133,4 +136,31 @@ public class NotesDB {
 
         return container.toString();
     }
+
+    public String removeNote(int id) {
+
+
+        JSONObject container = new JSONObject();
+
+        try {
+
+            PreparedStatement st = connection.prepareStatement("DELETE FROM notes WHERE id = ?");
+            st.setInt(1, id);
+            st.execute();
+
+            container.put("msg", "ok");
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+
+            container.put("msg", "error");
+
+        }
+
+
+        return container.toString();
+    }
+
 }

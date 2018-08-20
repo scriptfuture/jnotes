@@ -78,11 +78,10 @@ public class NotesController {
     }
 
     // Удалить заметку
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, params = {"id"})
+    @RequestMapping(value = "/delete", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String deleteNote(@RequestParam("id") int id, ModelMap model){
-
-        return "delete note id: "+id;
+        return db.removeNote(id);
     }
 
 }
