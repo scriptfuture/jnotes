@@ -1,12 +1,10 @@
 ## JNotes - Заметки на React + Redux, с бекэндом на Java (Spring Framework + PostgreSQL)
 
-
-В разработке... 
-
 ---
 
 Frontend на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
 
+Дамп базы [sql-скрипты](https://github.com/scriptfuture/jnotes/sql/)
 
 ### Описание REST-API
 
@@ -18,6 +16,11 @@ Frontend на основе [react-redux-notes](https://github.com/scriptfuture/r
 * {METHOD} - Метод запроса GET/POST/DELETE
 * {URL} - Путь запроса
 * {PARAMS} - Параметры запроса
+
+#### Тестовые формы - создание и редактирование заметки
+```code
+GET /api/
+```
 
 ### Список заметок
 
