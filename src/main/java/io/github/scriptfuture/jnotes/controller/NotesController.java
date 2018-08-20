@@ -1,5 +1,7 @@
 package io.github.scriptfuture.jnotes.controller;
 
+import io.github.scriptfuture.jnotes.NotesDB;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,15 +10,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @Controller
 @RequestMapping("/notes")
 public class NotesController {
+
+    private NotesDB db = null;
+
+    public NotesController() {
+        db = new NotesDB();
+    }
 
     // Получить первую страницу списка заметок
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     public String getNotes(ModelMap model){
-        return "get notes";
+        return db.getNotes();
     }
 
 
@@ -48,8 +57,7 @@ public class NotesController {
     @RequestMapping(value = "/one", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String getNote(@RequestParam("id") int id, ModelMap model){
-
-        return "get note id: "+id;
+        return db.getNote(id);
     }
 
     // Создать заметку
