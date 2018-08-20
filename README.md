@@ -4,7 +4,7 @@
 
 Frontend на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
 
-Дамп базы [sql-скрипты](https://github.com/scriptfuture/jnotes/sql/)
+Дамп базы [sql-скрипты](https://github.com/scriptfuture/jnotes/tree/master/sql)
 
 ### Описание REST-API
 
