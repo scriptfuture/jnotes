@@ -67,6 +67,7 @@ public class NotesDB {
 
             if (rs.next()) {
 
+                obj.put("id", rs.getString("id"));
                 obj.put("title", rs.getString("title"));
                 obj.put("text", rs.getString("text"));
 
@@ -84,6 +85,36 @@ public class NotesDB {
         return obj.toString();
     }
 
+    public JSONObject getOneTag(int id) {
+        JSONObject obj = new JSONObject();
+
+        try {
+
+            PreparedStatement stat = connection.prepareStatement("select * from tags where id = ?");
+            stat.setInt(1, id);
+
+            ResultSet rs = stat.executeQuery();
+
+
+            if (rs.next()) {
+
+                obj.put("id", rs.getString("id"));
+                obj.put("name", rs.getString("name"));
+
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return null;
+
+        }
+
+
+        return obj;
+    }
+
 
     private JSONArray getNoteTags(int id) {
 
@@ -99,7 +130,8 @@ public class NotesDB {
 
             while (rs.next()) {
 
-                JSONObject obj = new JSONObject();
+                JSONObject obj;
+                obj = new JSONObject();
 
                 obj.put("id", rs.getInt("id"));
                 obj.put("name", rs.getString("name"));
@@ -122,15 +154,23 @@ public class NotesDB {
     }
 
     public String getNotes() {
+        return getPageNotes(1);
+    }
+
+    public String getPageNotes(int page) {
 
 
         JSONArray arr = new JSONArray();
         int count = 0;
 
         try {
-            java.sql.Statement stat = connection.createStatement();
 
-            ResultSet rs = stat.executeQuery("select * from notes  ORDER BY id DESC LIMIT 10");
+            int offset = page * 10 - 10;
+
+            PreparedStatement stat = connection.prepareStatement("select * from notes  ORDER BY id DESC LIMIT 10 OFFSET ?");
+            stat.setInt(1, offset);
+
+            ResultSet rs = stat.executeQuery();
 
             while (rs.next()) {
 
@@ -164,6 +204,68 @@ public class NotesDB {
 
         JSONObject container = new JSONObject();
 
+        container.put("totalPages", count);
+        container.put("notes", arr);
+
+
+        return container.toString();
+    }
+
+    public String getTag(int id) {
+        return getPageTag(id, 1);
+    }
+
+    public String getPageTag(int id, int page) {
+
+
+        JSONArray arr = new JSONArray();
+        int count = 0;
+
+        try {
+
+            int offset = page * 10 - 10;
+
+            PreparedStatement stat = connection.prepareStatement("select notes.id as id, notes.title as title, notes.text as text from tag_note, notes WHERE  tag_id = ?  AND notes.id =  note_id  ORDER BY notes.id DESC LIMIT 10 OFFSET ?");
+            stat.setInt(1, id);
+            stat.setInt(2, offset);
+
+            ResultSet rs = stat.executeQuery();
+
+            while (rs.next()) {
+
+                JSONObject obj = new JSONObject();
+
+                obj.put("id", rs.getInt("id"));
+                obj.put("title", rs.getString("title"));
+                obj.put("text", rs.getString("text"));
+                obj.put("tags", getNoteTags(rs.getInt("id")));
+
+                arr.put(obj);
+
+            }
+
+            PreparedStatement stat2 = connection.prepareStatement("select COUNT(*) from tag_note WHERE tag_id = ?");
+            stat2.setInt(1, id);
+
+            ResultSet rs2 = stat2.executeQuery();
+            while(rs2.next()){
+                count = rs2.getInt("count");
+            }
+
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return null;
+
+        }
+
+
+        JSONObject container = new JSONObject();
+
+        container.put("tag", getOneTag(id));
         container.put("totalPages", count);
         container.put("notes", arr);
 

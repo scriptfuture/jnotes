@@ -33,7 +33,7 @@ public class NotesController {
     @RequestMapping(value = "", method = RequestMethod.GET, params = {"page"})
     @ResponseBody
     public String getNotesPage(@RequestParam("page") int page, ModelMap model){
-        return "get notes page: " + page;
+        return db.getPageNotes(page);
     }
 
 
@@ -41,16 +41,14 @@ public class NotesController {
     @RequestMapping(value = "/tag", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String getTag(@RequestParam("id") int id, ModelMap model){
-
-        return "get tag id: "+id+" page 1";
+        return db.getTag(id);
     }
 
     // Получить выборку по id тега и номуру страницы
     @RequestMapping(value = "/tag", method = RequestMethod.GET, params = {"page", "id"})
     @ResponseBody
     public String getTagPage(@RequestParam("id") int id, @RequestParam("page") int page, ModelMap model){
-
-        return "get tag id: "+id+" page: "+page;
+        return db.getPageTag(id, page);
     }
 
     // Получить заметку по id
