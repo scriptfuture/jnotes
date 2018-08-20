@@ -85,6 +85,42 @@ public class NotesDB {
     }
 
 
+    private JSONArray getNoteTags(int id) {
+
+        JSONArray arr = new JSONArray();
+        int count = 0;
+
+        try {
+
+            PreparedStatement stat = connection.prepareStatement("select tags.id AS id, tags.name AS name from tag_note, tags WHERE tag_id = tags.id AND note_id = ? ORDER BY name ASC");
+            stat.setInt(1, id);
+
+            ResultSet rs = stat.executeQuery();
+
+            while (rs.next()) {
+
+                JSONObject obj = new JSONObject();
+
+                obj.put("id", rs.getInt("id"));
+                obj.put("name", rs.getString("name"));
+
+                arr.put(obj);
+
+            }
+
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return null;
+
+        }
+
+        return arr;
+
+    }
+
     public String getNotes() {
 
 
@@ -103,6 +139,7 @@ public class NotesDB {
                 obj.put("id", rs.getInt("id"));
                 obj.put("title", rs.getString("title"));
                 obj.put("text", rs.getString("text"));
+                obj.put("tags", getNoteTags(rs.getInt("id")));
 
                 arr.put(obj);
 
