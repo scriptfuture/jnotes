@@ -58,7 +58,7 @@ public class NotesDB {
         JSONObject obj = new JSONObject();
 
         try {
-            
+
             PreparedStatement stat = connection.prepareStatement("select * from notes where id = ?");
             stat.setInt(1, id);
 
@@ -88,22 +88,19 @@ public class NotesDB {
     public String getNotes() {
 
 
-
-
         JSONArray arr = new JSONArray();
         int count = 0;
 
         try {
             java.sql.Statement stat = connection.createStatement();
 
-            ResultSet rs = stat.executeQuery("select * from notes  ORDER BY id ASC LIMIT 10");
-
-
+            ResultSet rs = stat.executeQuery("select * from notes  ORDER BY id DESC LIMIT 10");
 
             while (rs.next()) {
 
                 JSONObject obj = new JSONObject();
 
+                obj.put("id", rs.getInt("id"));
                 obj.put("title", rs.getString("title"));
                 obj.put("text", rs.getString("text"));
 
@@ -133,6 +130,42 @@ public class NotesDB {
         container.put("totalPages", count);
         container.put("notes", arr);
 
+
+        return container.toString();
+    }
+
+    public String getTags() {
+        JSONArray arr = new JSONArray();
+
+        int count = 0;
+
+        try {
+            java.sql.Statement stat = connection.createStatement();
+
+            ResultSet rs = stat.executeQuery("select * from tags  ORDER BY id ASC");
+
+
+            while (rs.next()) {
+
+                JSONObject obj = new JSONObject();
+                obj.put("id", rs.getInt("id"));
+                obj.put("name", rs.getString("name"));
+
+                arr.put(obj);
+
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Connection Failed! Check output console");
+            e.printStackTrace();
+            return null;
+
+        }
+
+
+        JSONObject container = new JSONObject();
+        container.put("tags", arr);
 
         return container.toString();
     }
