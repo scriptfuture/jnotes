@@ -66,7 +66,7 @@ public class NotesController {
     }
 
 
-    // Создать заметку
+    // Редактировать заметку
     @RequestMapping(value = "/update", method = RequestMethod.POST, params = {"id", "title", "text", "tags"})
     @ResponseBody
     public String updateNote(@RequestParam("id") int id, @RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
