@@ -135,11 +135,11 @@ GET /api/notes?page={page}
 
 #### Получить первую страницу по id тега
 ```code
-GET /api/notes/tag?tag={tag}
+GET /api/notes/tag?id={id}
 ```
 
 Параметры
-* {tag} - Номер тега (Integer)
+* {id} - Номер тега (Integer)
 
 ```JSON
 {
@@ -207,12 +207,12 @@ GET /api/notes/tag?tag={tag}
 
 #### Получить выборку по id тега и номуру страницы
 ```code
-GET /api/notes/tag?page={page}&tag={tag}
+GET /api/notes/tag?page={page}&id={id}
 ```
 
 Параметры
 * {page} - Номер страницы (Integer)
-* {tag} - Номер тега (Integer)
+* {id} - Номер тега (Integer)
 
 ```JSON
 {
