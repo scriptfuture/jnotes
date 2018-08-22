@@ -1,8 +1,15 @@
-## JNotes - Заметки на React + Redux, с бекэндом на Java (Spring Framework + PostgreSQL)
+## JNotes - REST-API на Java (Spring Framework + PostgreSQL) для сервиса заметок
 
 ---
 
-Frontend на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
+Backend-часть в которой можно:
+* Созранять, редактировать, удалять заметки.
+* Добавлять к заметкам теги (слова или словосочетания). 
+* Просматривать заметки отсортированные по тегу.
+* Просматривать список всех тегов.
+
+
+Frontend может быть реализован на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
 
 Дамп базы [sql-скрипты](https://github.com/scriptfuture/jnotes/tree/master/sql)
 
@@ -355,10 +362,11 @@ POST /api/notes/new?title={title}&text={text}&tags={tags}
 
 #### Редактировать заметку
 ```code
-POST /api/notes/update?title={title}&text={text}&tags={tags}
+POST /api/notes/update?id={id}&title={title}&text={text}&tags={tags}
 ```
 
 Параметры
+* {id} -  - Номер заметки (Integer)
 * {title} - Заголовок заметки (String)
 * {text} - Текст заметки (String)
 * {tags} - Теги (String)
