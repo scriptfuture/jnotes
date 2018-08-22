@@ -1,7 +1,5 @@
 ## JNotes - REST-API на Java (Spring Framework + PostgreSQL) для сервиса заметок
 
----
-
 Backend-часть в которой можно:
 * Созранять, редактировать, удалять заметки.
 * Добавлять к заметкам теги (слова или словосочетания). 
@@ -12,6 +10,8 @@ Backend-часть в которой можно:
 Frontend может быть реализован на основе [react-redux-notes](https://github.com/scriptfuture/react-redux-notes)
 
 Дамп базы [sql-скрипты](https://github.com/scriptfuture/jnotes/tree/master/sql)
+
+---
 
 ### Описание REST-API
 
