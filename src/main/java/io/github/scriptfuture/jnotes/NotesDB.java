@@ -35,9 +35,14 @@ public class NotesDB {
 
         try {
 
-            connection = DriverManager.getConnection(
+          /*  connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/notes", "postgres",
                     "postgres");
+                    */
+
+            connection = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/notes", "postgres",
+                    "fxfuture18");
 
         } catch (SQLException e) {
 
@@ -194,7 +199,7 @@ public class NotesDB {
 
         JSONObject container = new JSONObject();
 
-        container.put("totalPages", count);
+        container.put("totalPages", (count / 10 +1));
         container.put("notes", arr);
 
 
@@ -245,7 +250,7 @@ public class NotesDB {
         JSONObject container = new JSONObject();
 
         container.put("tag", getOneTag(id));
-        container.put("totalPages", count);
+        container.put("totalPages", (count / 10 +1));
         container.put("notes", arr);
 
 

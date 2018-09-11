@@ -18,7 +18,7 @@ public class TagsController {
     }
 
     // Получить список тегов
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "", method = RequestMethod.GET)
     @ResponseBody
     public String getTags(ModelMap model){
         return db.getTags();

@@ -17,7 +17,7 @@ public class IndexController {
     public String getTags(ModelMap model){
 
         return "<h1>Test forms</h1> <h2>New note</h2>" +
-                "<form action=\"/api/notes/new\" method=\"post\">\n" +
+                "<form action=\"notes/new\" method=\"post\">\n" +
                 "\t\t\t\t<p>\n" +
                 "\t\t\t\t\t<label for=\"name\">Title</label><br />\n" +
                 "\t\t\t\t\t<input type=\"text\" id=\"title\" name=\"title\"  ref='title'/>\n" +
@@ -32,7 +32,7 @@ public class IndexController {
                 "\t\t\t\t</p>\n" +
                 "\t\t\t\t\n" +
                 "\t\t\t    <p><button type=\"submit\">send</button></p>\n" +
-                "\t\t\t</form><h2>Update note</h2><form action=\"/api/notes/update\" method=\"post\">\n" +
+                "\t\t\t</form><h2>Update note</h2><form action=\"notes/update\" method=\"post\">\n" +
                 "\t\t\t\t<p>\n" +
                 "\t\t\t\t\t<label for=\"name\">ID</label><br />\n" +
                 "\t\t\t\t\t<input type=\"text\" id=\"id\" name=\"id\"  ref='id'/>\n" +

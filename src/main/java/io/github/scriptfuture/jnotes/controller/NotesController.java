@@ -22,7 +22,7 @@ public class NotesController {
     }
 
     // Получить первую страницу списка заметок
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "", method = RequestMethod.GET)
     @ResponseBody
     public String getNotes(ModelMap model){
         return db.getNotes();
@@ -30,7 +30,7 @@ public class NotesController {
 
 
     // Получить страницу списка заметок по номеру станицы
-    @RequestMapping(value = "", method = RequestMethod.GET, params = {"page"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "", method = RequestMethod.GET, params = {"page"})
     @ResponseBody
     public String getNotesPage(@RequestParam("page") int page, ModelMap model){
         return db.getPageNotes(page);
@@ -38,28 +38,28 @@ public class NotesController {
 
 
     // Получить первую страницу по id тега
-    @RequestMapping(value = "/tag", method = RequestMethod.GET, params = {"id"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/tag", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String getTag(@RequestParam("id") int id, ModelMap model){
         return db.getTag(id);
     }
 
     // Получить выборку по id тега и номуру страницы
-    @RequestMapping(value = "/tag", method = RequestMethod.GET, params = {"page", "id"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/tag", method = RequestMethod.GET, params = {"page", "id"})
     @ResponseBody
     public String getTagPage(@RequestParam("id") int id, @RequestParam("page") int page, ModelMap model){
         return db.getPageTag(id, page);
     }
 
     // Получить заметку по id
-    @RequestMapping(value = "/one", method = RequestMethod.GET, params = {"id"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/one", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String getNote(@RequestParam("id") int id, ModelMap model){
         return db.getNote(id);
     }
 
     // Создать заметку
-    @RequestMapping(value = "/new", method = RequestMethod.POST, params = {"title", "text", "tags"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/new", method = RequestMethod.POST, params = {"title", "text", "tags"})
     @ResponseBody
     public String newNote(@RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
         return db.newNote(title, text, tags);
@@ -67,14 +67,14 @@ public class NotesController {
 
 
     // Редактировать заметку
-    @RequestMapping(value = "/update", method = RequestMethod.POST, params = {"id", "title", "text", "tags"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/update", method = RequestMethod.POST, params = {"id", "title", "text", "tags"})
     @ResponseBody
     public String updateNote(@RequestParam("id") int id, @RequestParam("title") String title, @RequestParam("text") String text, @RequestParam("tags") String tags, ModelMap model){
         return db.updateNote(id, title, text, tags);
     }
 
     // Удалить заметку
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE, params = {"id"})
+    @RequestMapping(produces = "application/json; charset=UTF-8", value = "/delete", method = RequestMethod.GET, params = {"id"})
     @ResponseBody
     public String deleteNote(@RequestParam("id") int id, ModelMap model){
         return db.removeNote(id);
